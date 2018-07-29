@@ -22,7 +22,7 @@ import java.util.List;
  * @Date: 2018/7/23 22:31
  */
 @Controller
-@RequestMapping("/seckill") //模块/资源/细分
+//@RequestMapping("/seckill") //模块/资源/细分
 public class SeckillController {
     @Autowired
     private SeckillService seckillService;

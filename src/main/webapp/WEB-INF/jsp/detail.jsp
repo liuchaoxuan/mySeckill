@@ -66,7 +66,7 @@
 <%--jQuery countDown倒计时插件--%>
 <script src="http://cdn.bootcss.com/jquery.countdown/2.1.0/jquery.countdown.min.js"></script>
 
-<script type="text/javascript" src="/resource/script/seckill.js"></script>
+<script type="text/javascript" src="/seckill/resource/script/seckill.js"></script>
 <script type="text/javascript">
     //用el表达式传入参数
     $(function () {
