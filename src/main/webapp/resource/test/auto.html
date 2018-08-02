@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>搜索输入框demo</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="https://cdn.bootcss.com/jqueryui/1.12.1/jquery-ui.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style type="text/css">
+        .ui-com {
+            font-size: 14px;
+            max-height: 100px;
+            max-width: 172px;
+            overflow-y: auto;
+            /* 防止水平滚动条 */
+            overflow-x: hidden;
+        }
+    </style>
+    <script src="http://apps.bdimg.com/libs/jquery/2.0.0/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/jqueryui/1.12.1/jquery-ui.js"></script>
+</head>
+<body>
+<!-- input id="search_kw" type="text" name="myname" class="ui-autocomplete"></input>  -->
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">搜索自动提示</a>
+        </div>
+        <div class="navform">
+            <form class="navbar-form navbar-left" role="search">
+                <input id="search_kw" type="text" name="myname" class="form-control ui-com"  placeholder="请输入基金关键字">
+            </form>
+        </div>
+    </div>
+</nav>
+</body>
+<script type="text/javascript">
+    $(document).ready(function () {
+        (function(){
+            var insertOptions = function(data, id) {
+                var result = new Array();
+                $.each(data, function(i, item){
+                    result.push(item);
+                });
+                //alert(result.toString());
+                console.log(result.toString());
+                $('#search_kw').autocomplete({
+                    source: result
+                });
+            }
+
+            $('#search_kw').keyup(function(){
+                var right_id = "search_kw";
+                var url = "/seckill/searchList";
+                var skeyword = $("#search_kw").val();
+                $.ajax({
+                    url: url,
+                    dataType: 'json',
+                    data: {"skeyword": skeyword},
+                    success: function (data) {
+                        insertOptions(data, right_id);
+                    }
+
+                });
+            });
+
+        })();
+    });
+</script>
+</html>
